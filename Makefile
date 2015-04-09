@@ -5,7 +5,7 @@
 ## Login   <boulay_b@epitech.net>
 ##
 ## Started on  Mon Mar 30 09:35:37 2015 Boulay Arnaud
-## Last update Mon Mar 30 10:29:37 2015 Boulay Arnaud
+## Last update Thu Apr  9 14:22:53 2015 Boulay Arnaud
 ##
 
 ASMFO	= asm/
@@ -20,7 +20,21 @@ ASRCFO	= $(ASMFO)sources/
 
 CSRCFO	= $(CORFO)sources/
 
-ASRCS	= $(ASRCFO)main.c
+ASRCS	= $(ASRCFO)main.c \
+	  $(ASRCFO)get_next_line.c \
+	  $(ASRCFO)my_atoi_base.c \
+	  $(ASRCFO)strtowordtab.c \
+	  $(ASRCFO)check.c \
+	  $(ASRCFO)check_tools.c \
+	  $(ASRCFO)header.c \
+	  $(ASRCFO)label.c \
+	  $(ASRCFO)list.c \
+	  $(ASRCFO)tools.c \
+	  $(ASRCFO)op.c \
+	  $(ASRCFO)syntax.c \
+	  $(ASRCFO)files.c \
+	  $(ASRCFO)strings.c \
+	  $(ASRCFO)display.c
 
 CSRCS	= $(CSRCFO)main.c
 
