@@ -5,7 +5,7 @@
 ** Login   <boulay_b@epitech.net>
 **
 ** Started on  Sat Apr  4 20:07:54 2015 Boulay Arnaud
-** Last update Wed Apr  8 12:19:25 2015 Boulay Arnaud
+** Last update Sat Apr 11 14:27:50 2015 Boulay Arnaud
 */
 
 #include <stdlib.h>
@@ -23,16 +23,6 @@ char	*my_strncpy(char *dest, char *src, int n)
     }
   dest[i] = '\0';
   return (dest);
-}
-
-int	my_strlen(char *str)
-{
-  int	i;
-
-  i = 0;
-  while (str[i] != '\0')
-    ++i;
-  return (i);
 }
 
 char	*my_strcat(char *dest, char *src)
@@ -78,4 +68,26 @@ char	*my_strdup(char *str)
     }
   new = my_strncpy(new, str, my_strlen(str));
   return (new);
+}
+
+char	*my_cattab(char **tab, int i)
+{
+  char	*str;
+  int	len;
+  int	tmp;
+
+  len = 0;
+  tmp = i;
+  while (tab[++i] != NULL && tab[i][0] != ';' && tab[i][0] != '#')
+    len = len + my_strlen(tab[i]);
+  if ((str = malloc(sizeof(char *) * (len + 1))) == NULL)
+    {
+      my_putstr("Error: Malloc failed in my_cattab.\n", 1);
+      return (NULL);
+    }
+  i = tmp + 1;
+  str = my_strncpy(str, tab[i], my_strlen(tab[i]));
+  while (tab[++i] != NULL && tab[i][0] != ';' && tab[i][0] != '#')
+    str = my_strcat(str, tab[i]);
+  return (str);
 }

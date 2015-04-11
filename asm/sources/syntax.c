@@ -1,11 +1,11 @@
 /*
-** syntax.c for corewar in /home/boulay_b/Rendu/SE2/CPE/CPE_2014_corewar/asm
+1;2802;0c** syntax.c for corewar in /home/boulay_b/Rendu/SE2/CPE/CPE_2014_corewar/asm
 **
 ** Made by Boulay Arnaud
 ** Login   <boulay_b@epitech.net>
 **
 ** Started on  Sun Apr  5 16:04:06 2015 Boulay Arnaud
-** Last update Thu Apr  9 14:44:13 2015 Boulay Arnaud
+** Last update Sat Apr 11 14:54:13 2015 Boulay Arnaud
 */
 
 #include <stdlib.h>
@@ -16,15 +16,18 @@ int		check_instruction(char **tab, int i, op_t code, t_label *label_list)
 {
   int		bytes_param;
   int		bytes;
+  char		*catted;
   char		**param;
 
   param = NULL;
   bytes = 1;
-  if ((param = my_strtowordtab(param, tab[i + 1], SEPARATOR_CHAR)) == NULL)
+  if ((catted = my_cattab(tab, i)) == NULL)
+    return (-1);
+  if ((param = my_strtowordtab(param, catted, SEPARATOR_CHAR)) == NULL)
     return (-1);
   if (my_tablen(param) != code.nbr_args)
     {
-      my_putstr("Syntax Error: Invalid arguments number.", 1);
+      my_putstr("Syntax Error: Invalid arguments number.\n", 1);
       return (-1);
     }
   if (my_strcmp(tab[i], "live") == 0 && my_strcmp(tab[i], "zjmp") == 0 &&
@@ -56,9 +59,9 @@ int		check_code(char **tab, int line_nb, int *total, t_label *label_list)
 	 my_strcmp(op_tab[j].mnemonique, tab[i]) != 1)
     ++j;
   if (op_tab[j].mnemonique == NULL ||
-      (tot_tmp = check_instruction(tab, i, op_tab[j], label_list) == -1))
+      (tot_tmp = check_instruction(tab, i, op_tab[j], label_list)) == -1)
     {
-      my_putstr("Syntax Error or Unknow Code line ", 1);
+      my_putstr("Program stopped because of Syntax Error line ", 1);
       my_putnbr(line_nb, 1);
       return (-1);
     }
@@ -135,5 +138,7 @@ int		check_syntax(int fd, int *total, t_label *label_list)
       free_tab(line);
       ++line_nb;
     }
+  if (check_no_label(label_list) == -1)
+    return (-1);
   return (0);
 }

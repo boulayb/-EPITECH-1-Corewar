@@ -5,7 +5,7 @@
 ** Login   <boulay_b@epitech.net>
 **
 ** Started on  Sun Apr  5 16:07:51 2015 Boulay Arnaud
-** Last update Sun Apr  5 16:24:57 2015 Boulay Arnaud
+** Last update Sat Apr 11 14:03:38 2015 Boulay Arnaud
 */
 
 #include <stdlib.h>
@@ -19,8 +19,9 @@ int		count_words(char *str, char sep)
   i = -1;
   words = 0;
   while (str[++i] != '\0')
-    if ((str[i] != sep && str[i] != '\t') &&
-	(str[i + 1] == sep || str[i + 1] == '\t' || str[i + 1] == '\0'))
+    if ((str[i] != sep && str[i] != ' ' && str[i] != '\t') &&
+	(str[i + 1] == sep || str[i + 1] == ' ' ||
+	 str[i + 1] == '\t' || str[i + 1] == '\0'))
       ++words;
   return (words);
 }
@@ -31,10 +32,11 @@ int		my_wordlen(char *str, int *i, char sep)
 
   j = 0;
   while (str[++*i] != '\0')
-    if (str[*i] != sep && str[*i] != '\t')
+    if (str[*i] != sep && str[*i] != ' ' && str[*i] != '\t')
       {
 	++j;
-	if (str[*i + 1] == sep || str[*i + 1] == '\t' || str[*i + 1] == '\0')
+	if (str[*i + 1] == sep || str[*i + 1] == ' ' ||
+	    str[*i + 1] == '\t' || str[*i + 1] == '\0')
 	  return (j);
       }
   return (-1);
@@ -46,10 +48,11 @@ char		*my_wordcpy(char *tab, char *str, int *i, char sep)
 
   j = -1;
   while (str[++*i] != '\0')
-    if (str[*i] != sep && str[*i] != '\t')
+    if (str[*i] != sep && str[*i] != ' ' && str[*i] != '\t')
       {
 	tab[++j] = str[*i];
-	if (str[*i + 1] == sep || str[*i + 1] == '\t' || str[*i + 1] == '\0')
+	if (str[*i + 1] == sep || str[*i + 1] == ' ' ||
+	    str[*i + 1] == '\t' || str[*i + 1] == '\0')
 	  {
 	    tab[++j] = '\0';
 	    return (tab);

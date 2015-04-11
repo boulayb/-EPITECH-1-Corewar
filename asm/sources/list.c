@@ -5,7 +5,7 @@
 ** Login   <boulay_b@epitech.net>
 **
 ** Started on  Mon Apr  6 14:24:32 2015 Boulay Arnaud
-** Last update Thu Apr  9 14:38:33 2015 Boulay Arnaud
+** Last update Fri Apr 10 16:34:31 2015 Boulay Arnaud
 */
 
 #include <stdlib.h>
@@ -46,6 +46,8 @@ int		add_chain(t_label *label_list, char *name, int role, int bytes)
     return (-1);
   new_chain->role = role;
   new_chain->bytes = bytes;
+  if (new_chain->role == 0)
+    ++new_chain->bytes;
   new_chain->back = label_list->back;
   new_chain->next = label_list;
   label_list->back->next = new_chain;

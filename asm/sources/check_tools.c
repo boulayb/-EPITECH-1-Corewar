@@ -5,12 +5,44 @@
 ** Login   <boulay_b@epitech.net>
 **
 ** Started on  Thu Apr  9 12:34:36 2015 Boulay Arnaud
-** Last update Thu Apr  9 15:26:48 2015 Boulay Arnaud
+** Last update Sat Apr 11 14:25:08 2015 Boulay Arnaud
 */
 
 #include <stdlib.h>
 #include "op.h"
 #include "asm.h"
+
+int	param_execption(char *name, int i)
+{
+  if (my_strcmp(name, "zjmp") == 1)
+    return (1);
+  else if ((my_strcmp(name, "ldi") == 1 || my_strcmp(name, "lldi") == 1)
+	   && (i == 1 || i == 2))
+    return (1);
+  else if ((my_strcmp(name, "sti") == 1) && (i == 2 || i == 3))
+    return (1);
+  else if (my_strcmp(name, "fork") == 1 || my_strcmp(name, "lfork") == 1)
+    return (1);
+  return (0);
+}
+
+int	add_bytes(char type, char b_param, int i, char *name)
+{
+  if ((b_param & type) == 0)
+    {
+      my_putstr("Syntax Error: Bad argument for instruction ", 1);
+      my_putstr(name, 1);
+      my_putstr(".\n", 1);
+      return (-1);
+    }
+  if (b_param == 1)
+    return (1);
+  else if (b_param == 4 || param_execption(name, i) == 1)
+    return (2);
+  else if (b_param == 2)
+    return (4);
+  return (0);
+}
 
 char	**sort_params(char **tab, char *param)
 {

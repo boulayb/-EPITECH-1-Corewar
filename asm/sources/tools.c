@@ -5,10 +5,11 @@
 ** Login   <boulay_b@epitech.net>
 **
 ** Started on  Wed Apr  8 11:53:26 2015 Boulay Arnaud
-** Last update Thu Apr  9 02:11:18 2015 Boulay Arnaud
+** Last update Sat Apr 11 14:09:44 2015 Boulay Arnaud
 */
 
 #include <stdlib.h>
+#include "asm.h"
 
 int	is_inside(char *str, char c)
 {
@@ -27,6 +28,16 @@ int	my_tablen(char **tab)
 
   i = 0;
   while (tab[i] != NULL)
+    ++i;
+  return (i);
+}
+
+int	my_strlen(char *str)
+{
+  int	i;
+
+  i = 0;
+  while (str[i] != '\0')
     ++i;
   return (i);
 }
