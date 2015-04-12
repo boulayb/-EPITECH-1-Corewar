@@ -1,11 +1,11 @@
 /*
-1;2802;0c** syntax.c for corewar in /home/boulay_b/Rendu/SE2/CPE/CPE_2014_corewar/asm
+** syntax.c for corewar in /home/boulay_b/Rendu/SE2/CPE/CPE_2014_corewar/asm
 **
 ** Made by Boulay Arnaud
 ** Login   <boulay_b@epitech.net>
 **
 ** Started on  Sun Apr  5 16:04:06 2015 Boulay Arnaud
-** Last update Sat Apr 11 14:54:13 2015 Boulay Arnaud
+** Last update Sun Apr 12 14:24:43 2015 Boulay Arnaud
 */
 
 #include <stdlib.h>
@@ -21,10 +21,11 @@ int		check_instruction(char **tab, int i, op_t code, t_label *label_list)
 
   param = NULL;
   bytes = 1;
-  if ((catted = my_cattab(tab, i)) == NULL)
+  if ((catted = my_cattab(tab, i, 0)) == NULL)
     return (-1);
   if ((param = my_strtowordtab(param, catted, SEPARATOR_CHAR)) == NULL)
     return (-1);
+  free(catted);
   if (my_tablen(param) != code.nbr_args)
     {
       my_putstr("Syntax Error: Invalid arguments number.\n", 1);
@@ -106,15 +107,8 @@ int		check_line(char **tab, int *total, int line_nb, t_label *label_list)
 	return (-1);
     }
   else
-    {
-      if (tab[0][0] == '.')
-	return (0);
-      if (check_code(tab, line_nb, total, label_list) == -1)
-	{
-	  my_putchar('\n', 1);
-	  return (-1);
-	}
-    }
+    if (check_line_core(tab, total, line_nb, label_list) == -1)
+      return (-1);
   return (0);
 }
 

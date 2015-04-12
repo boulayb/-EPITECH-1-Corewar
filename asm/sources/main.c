@@ -5,7 +5,7 @@
 ** Login   <boulay_b@epitech.net>
 **
 ** Started on  Mon Apr  6 14:26:01 2015 Boulay Arnaud
-** Last update Wed Apr  8 11:50:23 2015 Boulay Arnaud
+** Last update Sat Apr 11 23:03:25 2015 Boulay Arnaud
 */
 
 #include <stdlib.h>
@@ -22,6 +22,8 @@ int		my_asm(char *file_name)
   if ((label_list = create_list()) == NULL)
     return (-1);
   if (create_header(src, dest, label_list) == -1)
+    return (-1);
+  if (create_core(src, dest, label_list) == -1)
     return (-1);
   rm_list(label_list);
   return (0);

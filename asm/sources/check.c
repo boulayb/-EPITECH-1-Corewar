@@ -1,19 +1,38 @@
 /*
-1;2802;0c** check.c for corewar in /home/boulay_b/Rendu/SE2/CPE/CPE_2014_corewar/asm
+** check.c for corewar in /home/boulay_b/Rendu/SE2/CPE/CPE_2014_corewar/asm
 **
 ** Made by Boulay Arnaud
 ** Login   <boulay_b@epitech.net>
 **
 ** Started on  Wed Apr  8 12:53:31 2015 Boulay Arnaud
-** Last update Sat Apr 11 14:24:05 2015 Boulay Arnaud
+** Last update Sun Apr 12 17:03:20 2015 Boulay Arnaud
 */
 
+#include <limits.h>
 #include <stdlib.h>
 #include "op.h"
 #include "asm.h"
 
+int	check_raw(char **tab, int *total)
+{
+  int	nb;
+  int	i;
+
+  i = 0;
+  while (tab[++i] != NULL)
+    {
+      if ((nb = my_atoi_base(tab[i], BASE16)) == -1)
+	return (-1);
+      if (nb > 255)
+	return (-1);
+      ++*total;
+    }
+  return (0);
+}
+
 int	is_indirect(char *param, t_label *label_list)
 {
+  int	nb;
   char	**tab;
   int	i;
 
@@ -25,14 +44,21 @@ int	is_indirect(char *param, t_label *label_list)
       return (-1);
     }
   while (tab[++i] != NULL)
-    if (get_params(tab[i], label_list) == -1)
+    if ((nb = get_params(tab[i], label_list)) == -1)
       return (-1);
+    else if (nb > IDX_MOD)
+      {
+	my_putstr("Warning: Indirection too far: ", 1);
+	my_putnbr(nb, 1);
+	my_putchar('\n', 1);
+      }
   free_tab(tab);
   return (1);
 }
 
 int	is_direct(char *param, t_label *label_list)
 {
+  int	nb;
   char	**tab;
   int	i;
 
@@ -46,8 +72,10 @@ int	is_direct(char *param, t_label *label_list)
 	  return (-1);
 	}
       while (tab[++i] != NULL)
-	if (get_params(tab[i], label_list) == -1)
+	if ((nb = get_params(tab[i], label_list)) == -1)
 	  return (-1);
+	else if (nb <= INT_MIN)
+	  my_putstr("Warning: direct too big.\n", 1);
       free_tab(tab);
       return (1);
     }

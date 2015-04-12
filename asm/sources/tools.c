@@ -5,11 +5,20 @@
 ** Login   <boulay_b@epitech.net>
 **
 ** Started on  Wed Apr  8 11:53:26 2015 Boulay Arnaud
-** Last update Sat Apr 11 14:09:44 2015 Boulay Arnaud
+** Last update Sat Apr 11 19:59:54 2015 Boulay Arnaud
 */
 
 #include <stdlib.h>
 #include "asm.h"
+
+void	set_buffer(char *buff, int size)
+{
+  int	i;
+
+  i = -1;
+  while (++i != size)
+    buff[i] = '\0';
+}
 
 int	is_inside(char *str, char c)
 {

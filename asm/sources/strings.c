@@ -5,7 +5,7 @@
 ** Login   <boulay_b@epitech.net>
 **
 ** Started on  Sat Apr  4 20:07:54 2015 Boulay Arnaud
-** Last update Sat Apr 11 14:27:50 2015 Boulay Arnaud
+** Last update Sat Apr 11 22:09:50 2015 Boulay Arnaud
 */
 
 #include <stdlib.h>
@@ -70,24 +70,30 @@ char	*my_strdup(char *str)
   return (new);
 }
 
-char	*my_cattab(char **tab, int i)
+char	*my_cattab(char **tab, int i, int sep)
 {
   char	*str;
   int	len;
+  int	space;
   int	tmp;
 
   len = 0;
   tmp = i;
-  while (tab[++i] != NULL && tab[i][0] != ';' && tab[i][0] != '#')
+  space = 0;
+  if (sep == 1)
+    space = my_tablen(tab) - 1;
+  while (tab[++i] != NULL && tab[i][0] != ';' && tab[i][0] != COMMENT_CHAR)
     len = len + my_strlen(tab[i]);
-  if ((str = malloc(sizeof(char *) * (len + 1))) == NULL)
-    {
-      my_putstr("Error: Malloc failed in my_cattab.\n", 1);
-      return (NULL);
-    }
+  if ((str = malloc(sizeof(char *) * (len + 1 + space))) == NULL)
+    return (NULL);
+  set_buffer(str, len + 1 + space);
   i = tmp + 1;
   str = my_strncpy(str, tab[i], my_strlen(tab[i]));
-  while (tab[++i] != NULL && tab[i][0] != ';' && tab[i][0] != '#')
-    str = my_strcat(str, tab[i]);
+  while (tab[++i] != NULL && tab[i][0] != ';' && tab[i][0] != COMMENT_CHAR)
+    {
+      if (sep == 1)
+	str[my_strlen(str)] = ' ';
+      str = my_strcat(str, tab[i]);
+    }
   return (str);
 }

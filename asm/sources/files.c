@@ -5,18 +5,37 @@
 ** Login   <boulay_b@epitech.net>
 **
 ** Started on  Sat Apr  4 22:31:50 2015 Boulay Arnaud
-** Last update Sun Apr  5 21:10:54 2015 Boulay Arnaud
+** Last update Sun Apr 12 18:48:30 2015 Boulay Arnaud
 */
 
 #include <fcntl.h>
 #include <stdlib.h>
 #include "asm.h"
 
+int	get_just_name(char *str)
+{
+  int	tmp;
+  int	i;
+
+  i = 0;
+  tmp = 0;
+  while (str[i] != '\0')
+    {
+      if (str[i] == '/')
+	tmp = i;
+      ++i;
+    }
+  if (tmp == 0)
+    return (0);
+  return (tmp + 1);
+}
+
 int	create_new_file(int *dest, char *file_name)
 {
   char	*new_name;
 
-  if ((new_name = malloc(sizeof(file_name) + 3)) == NULL)
+  file_name = file_name + get_just_name(file_name);
+  if ((new_name = malloc(sizeof(file_name) + 300)) == NULL)
     {
       my_putstr("Error: Malloc failed in open_files.\n", 1);
       return (-1);
@@ -52,7 +71,7 @@ int	open_files(int *src, int *dest, char *file_name)
       my_putstr(" is not a .s file.\n", 1);
       return (-1);
     }
-  if ((*dest = create_new_file(dest, file_name)) == -1)
+  if (create_new_file(dest, file_name) == -1)
     return (-1);
   return (0);
 }

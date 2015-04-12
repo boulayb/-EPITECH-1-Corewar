@@ -1,16 +1,44 @@
 /*
-** check_tools.c for corewar in /home/boulay_b/Rendu/SE2/CPE/CPE_2014_corewar/asm
+1;2802;0c** check_tools.c for corewar in /home/boulay_b/Rendu/SE2/CPE/CPE_2014_corewar/asm
 **
 ** Made by Boulay Arnaud
 ** Login   <boulay_b@epitech.net>
 **
 ** Started on  Thu Apr  9 12:34:36 2015 Boulay Arnaud
-** Last update Sat Apr 11 14:25:08 2015 Boulay Arnaud
+** Last update Sun Apr 12 17:03:46 2015 Boulay Arnaud
 */
 
+#include <limits.h>
 #include <stdlib.h>
 #include "op.h"
 #include "asm.h"
+
+int	check_line_core(char **tab, int *total, int line_nb, t_label *label_list)
+{
+  if (my_strcmp(tab[0], ".extend") == 1)
+    return (0);
+  else if (my_strcmp(tab[0], ".code") == 1)
+    {
+      if (check_raw(tab, total) == -1)
+	{
+	  my_putstr("Syntax Error: Invalid params for .code at line ", 1);
+	  my_putnbr(line_nb, 1);
+	  my_putchar('\n', 1);
+	  return (-1);
+	}
+    }
+  else if (check_code(tab, line_nb, total, label_list) == -1)
+    {
+      my_putchar('\n', 1);
+      return (-1);
+    }
+  if (*total <= INT_MIN)
+    {
+      my_putstr("Error: too much code in file.\n", 1);
+      return (-1);
+    }
+  return (0);
+}
 
 int	param_execption(char *name, int i)
 {
@@ -68,6 +96,9 @@ char	**sort_params(char **tab, char *param)
 
 int	get_params(char *param, t_label *label_list)
 {
+  int	rslt;
+
+  rslt = 0;
   if (param[0] == LABEL_CHAR)
     {
       if (check_label(param + 1, label_list, 1, 0) == -1)
@@ -75,11 +106,11 @@ int	get_params(char *param, t_label *label_list)
     }
   else if (param[0] == '0' && param[1] == 'x')
     {
-      if (my_atoi_base(param + 2, BASE16) == -1)
+      if ((rslt = my_atoi_base(param + 2, BASE16)) == -1)
 	return (-1);
     }
   else
-    if (my_atoi_base(param, BASE10) == -1)
+    if ((rslt = my_atoi_base(param, BASE10)) == -1)
       return (-1);
-  return (0);
+  return (rslt);
 }
