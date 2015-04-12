@@ -5,7 +5,7 @@
 ** Login   <danilo_d@epitech.net>
 **
 ** Started on  Sun Apr 12 15:49:10 2015 danilov dimitri
-** Last update Sun Apr 12 22:40:38 2015 Boulay Arnaud
+** Last update Sun Apr 12 23:09:42 2015 Boulay Arnaud
 */
 
 #include	"cw.h"
@@ -75,12 +75,18 @@ void		init_color(t_corewar *corewar)
 
 int		init_sdl(t_corewar *corewar)
 {
-  corewar->sdl.police = TTF_OpenFont("sprites/Starjedi.ttf", 20);
+  if ((corewar->sdl.police = TTF_OpenFont("sprites/Starjedi.ttf", 20)) == NULL)
+    return (-1);
   TTF_SetFontStyle(corewar->sdl.police, TTF_STYLE_NORMAL);
-  corewar->sdl.police2 = TTF_OpenFont("sprites/police_test.ttf", 15);
+  if ((corewar->sdl.police2 = TTF_OpenFont("sprites/police_test.ttf", 15))
+      == NULL)
+    return (-1);
   TTF_SetFontStyle(corewar->sdl.police2, TTF_STYLE_NORMAL);
-  corewar->sdl.Kappa = SDL_LoadBMP("sprites/kappa_vm.bmp");
-  corewar->sdl.i_cry_everitim = SDL_LoadBMP("sprites/BibleThump.bmp");
+  if ((corewar->sdl.Kappa = SDL_LoadBMP("sprites/kappa_vm.bmp")) == NULL)
+    return (-1);
+  if ((corewar->sdl.i_cry_everitim = SDL_LoadBMP("sprites/BibleThump.bmp"))
+      == NULL)
+    return (-1);
   init_color(corewar);
   if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 512) < 0)
     return (-1);
