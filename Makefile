@@ -5,7 +5,7 @@
 ## Login   <boulay_b@epitech.net>
 ##
 ## Started on  Mon Mar 30 09:35:37 2015 Boulay Arnaud
-## Last update Sun Apr 12 14:21:05 2015 Boulay Arnaud
+## Last update Sun Apr 12 22:23:08 2015 Boulay Arnaud
 ##
 
 ASMFO	= asm/
@@ -38,7 +38,29 @@ ASRCS	= $(ASRCFO)main.c \
 	  $(ASRCFO)strings.c \
 	  $(ASRCFO)display.c
 
-CSRCS	= $(CSRCFO)main.c
+CSRCS	= $(CSRCFO)main.c \
+	  $(CSRCFO)corewar.c \
+	  $(CSRCFO)add_to_list.c \
+	  $(CSRCFO)find_coding_byte.c \
+	  $(CSRCFO)overwrite_memory.c \
+	  $(CSRCFO)dump_memory.c \
+	  $(CSRCFO)load_sdl.c \
+	  $(CSRCFO)init_and_rm.c \
+	  $(CSRCFO)event.c \
+	  $(CSRCFO)parsing_file.c \
+	  $(CSRCFO)parse_instruction.c \
+	  $(CSRCFO)send_instruction.c \
+	  $(CSRCFO)live_ld_sd.c \
+	  $(CSRCFO)add_sub_and.c \
+	  $(CSRCFO)ldi_sti_lld_lldi.c \
+	  $(CSRCFO)fork_lfork_aff.c \
+	  $(CSRCFO)or_xor_zjmp.c \
+	  $(CSRCFO)my_get_nbr.c \
+	  $(CSRCFO)graphic.c \
+	  $(CSRCFO)reserve_memory.c \
+	  $(CSRCFO)error.c \
+	  $(CSRCFO)string.c \
+	  $(CSRCFO)my_display.c
 
 AOBJS	= $(ASRCS:.c=.o)
 
@@ -48,7 +70,7 @@ RM	= rm -rf
 
 GCC	= gcc -o
 
-CFLAGS	+= -Wextra -Wall -Werror
+CFLAGS	+= -Wextra -Wall -Werror -lSDLmain -lSDL -lSDL_ttf -lSDL_mixer
 CFLAGS	+= -I$(ASMFO)include/ -I$(CORFO)include/
 
 all: $(NAME1) $(NAME2)
