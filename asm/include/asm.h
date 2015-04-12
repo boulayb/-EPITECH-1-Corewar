@@ -5,7 +5,7 @@
 ** Login   <boulay_b@epitech.net>
 **
 ** Started on  Mon Mar 30 09:34:18 2015 Boulay Arnaud
-** Last update Sun Apr 12 18:45:11 2015 Boulay Arnaud
+** Last update Sun Apr 12 19:00:48 2015 Boulay Arnaud
 */
 
 #ifndef	ASM_H_
@@ -35,25 +35,32 @@ typedef struct		s_label
 int			my_tablen(char **tab);
 int			my_atoi_base(char *str, char *base);
 int			check_raw(char **tab, int *total);
-int			check_code(char **tab, int line_nb, int *total, t_label *label_list);
+int			check_code(char **tab, int line_nb, int *total,
+				   t_label *label_list);
 int			add_bytes(char type, char b_param, int i, char *name);
 int			open_files(int *src, int *dest, char *file_name);
 int			set_label(t_label *label_list, int *total, int tmp);
-int			check_label(char *label, t_label *label_list, int role, int bytes);
+int			check_label(char *label, t_label *label_list, int role,
+				    int bytes);
 int			check_syntax(int fd, int *total, t_label *label_list);
-int			check_params(char *name, char **param, op_t code, t_label *label_list);
-int			check_line_core(char **tab, int *total, int line_nb, t_label *label_list);
+int			check_params(char *name, char **param, op_t code,
+				     t_label *label_list);
+int			check_line_core(char **tab, int *total, int line_nb,
+					t_label *label_list);
 int			create_header(int src, int dest, t_label *label_list);
 int			is_inside(char *str, char c);
 int			put_codage(int dest, char **param);
-int			put_params(int dest, char *name, char **param, t_label *label_list);
-int			put_label(int dest, int bytes, char *name, t_label *label_list);
+int			put_params(int dest, char *name, char **param,
+				   t_label *label_list);
+int			put_label(int dest, int bytes, char *name,
+				  t_label *label_list);
 int			put_raw(int dest, char **line);
 int			put_opocode(int dest, char *code);
 int			create_core(int src, int dest, t_label *label_list);
 int			my_strlen(char *str);
 int			check_no_label(t_label *label_list);
-int			add_chain(t_label *label_list, char *name, int role, int bytes);
+int			add_chain(t_label *label_list, char *name, int role,
+				  int bytes);
 int			my_strcmp(char *str1, char *str2);
 int			get_params(char *param, t_label *label_list);
 char			*get_next_line(const int fd);
@@ -70,7 +77,8 @@ void			my_putstr(char *str, int fd);
 void			free_tab(char **tab);
 void			my_putnbr(int nb, int fd);
 void			rm_list(t_label *label_list);
-void			put_param_core(int dest, char *param, char *name, t_label *label_list);
+void			put_param_core(int dest, char *param, char *name,
+				       t_label *label_list);
 t_label			*create_list(void);
 
 #endif /* !ASM_H_ */

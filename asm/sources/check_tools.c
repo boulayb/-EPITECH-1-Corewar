@@ -1,11 +1,11 @@
 /*
-1;2802;0c** check_tools.c for corewar in /home/boulay_b/Rendu/SE2/CPE/CPE_2014_corewar/asm
+** check_tools.c for corewar in /home/boulay_b/Rendu/SE2/CPE/CPE_2014_corewar/asm
 **
 ** Made by Boulay Arnaud
 ** Login   <boulay_b@epitech.net>
 **
 ** Started on  Thu Apr  9 12:34:36 2015 Boulay Arnaud
-** Last update Sun Apr 12 17:03:46 2015 Boulay Arnaud
+** Last update Sun Apr 12 19:06:21 2015 Boulay Arnaud
 */
 
 #include <limits.h>
