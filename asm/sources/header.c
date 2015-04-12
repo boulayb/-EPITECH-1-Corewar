@@ -5,7 +5,7 @@
 ** Login   <boulay_b@epitech.net>
 **
 ** Started on  Sat Apr  4 22:35:27 2015 Boulay Arnaud
-** Last update Sun Apr 12 18:12:15 2015 Boulay Arnaud
+** Last update Sun Apr 12 21:12:34 2015 Boulay Arnaud
 */
 
 #include <stdlib.h>
@@ -43,6 +43,7 @@ int		choose_str(int dest, char **line, char *str, int total)
       if ((str = my_cattab(line, 0, 1)) == NULL)
 	return (-1);
       write_str(dest, str, PROG_NAME_LENGTH);
+      put_int(dest, 0, 4);
       put_int(dest, total, 4);
       free(str);
     }
@@ -51,6 +52,7 @@ int		choose_str(int dest, char **line, char *str, int total)
       if ((str = my_cattab(line, 0, 1)) == NULL)
 	return (-1);
       write_str(dest, str, COMMENT_LENGTH);
+      put_int(dest, 0, 4);
       free(str);
       return (1);
     }
