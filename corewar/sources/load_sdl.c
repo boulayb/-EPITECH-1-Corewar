@@ -1,11 +1,11 @@
 /*
 ** load_sdl.c for load_sdl in /home/danilo_d/semestre2/core_ware_vm
-1;2802;0c**
+**
 ** Made by danilov dimitri
 ** Login   <danilo_d@epitech.net>
 **
 ** Started on  Sun Apr 12 15:49:10 2015 danilov dimitri
-** Last update Sun Apr 12 20:46:01 2015 danilov dimitri
+** Last update Sun Apr 12 22:40:38 2015 Boulay Arnaud
 */
 
 #include	"cw.h"
