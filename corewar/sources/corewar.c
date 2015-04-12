@@ -5,7 +5,7 @@
 ** Login   <danilo_d@epitech.net>
 **
 ** Started on  Tue Mar 31 08:38:19 2015 danilov dimitri
-** Last update Sun Apr 12 21:31:35 2015 danilov dimitri
+** Last update Sun Apr 12 22:42:20 2015 Boulay Arnaud
 */
 
 #include	"cw.h"
@@ -77,7 +77,8 @@ int		initialise_list(t_corewar *corewar)
   int		i;
 
   i = -1;
-  corewar->champion = create_list();
+  if ((corewar->champion = create_list()) == NULL)
+    return (-1);
   corewar->memory.nbr_process = 0;
   while (++i != (corewar->champ.nbr_champ - 1))
     {
