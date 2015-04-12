@@ -14,7 +14,7 @@ l2:	sti	r1,%:live,%1
 live:	live	%1
 	zjmp	%:live
 
-base:	st	r1,%5
+base:	st	r1,5
 	live	%1
 	ld	%40, r2
 	add	r2, r3, r3
